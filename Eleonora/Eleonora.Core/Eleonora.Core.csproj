@@ -5,17 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.Azure.Management.Compute" Version="15.0.0" />
-    <PackageReference Include="Microsoft.Azure.Management.Network.Fluent" Version="1.1.0" />
-    <PackageReference Include="Microsoft.Azure.Management.ResourceManager.Fluent" Version="1.1.0" />
+    <PackageReference Include="Microsoft.Azure.Management.Network.Fluent" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Azure.Management.ResourceManager.Fluent" Version="1.1.1" />
     <PackageReference Include="Microsoft.Azure.Mobile.Client" Version="4.0.0" />
     <PackageReference Include="Microsoft.IdentityModel.Clients.ActiveDirectory" Version="3.13.9" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.2" />
-    <PackageReference Include="SSH.NET" Version="2016.0.0" />
   </ItemGroup>
 
 </Project>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="Hello">Hello World, Click Me!</string>
-    <string name="ApplicationName">Eleonora.Droid</string>
+    <string name="ApplicationName">Eleonora</string>
+    <string name="rest_endpoint">http://169.57.35.130/doginder/api/</string>
+    <string name="facebook_app_id">1868043896748510</string>
 </resources>
