@@ -53,6 +53,7 @@ namespace Eleonora.Droid
 
             //  Para jugar con el texto escrito
             cajaBusqueda = FindViewById<EditText>(Resource.Id.searchBox);
+            cajaBusqueda.Text = "TORRE EIFFEL";
             cajaBusqueda.KeyPress += TxtSearch_KeyPress;
 
             // Mobile Center 
