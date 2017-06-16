@@ -1,0 +1,3 @@
+﻿namespace Eleonora.Core.Enums
+{
+}
