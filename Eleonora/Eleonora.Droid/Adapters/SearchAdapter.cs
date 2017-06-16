@@ -51,8 +51,8 @@ namespace Eleonora.Droid.Adapters
                 holder.Title = view.FindViewById<TextView>(Resource.Id.Title);
                 holder.Description = view.FindViewById<TextView>(Resource.Id.Description);
                 // Mock
-                holder.Title.Text = "Texto Demo";
-                holder.Description.Text = @"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque auctor dui nec ultricies. Cras sed massa et nunc mattis congue ac eget mauris. Suspendisse egestas massa in lorem eleifend, vitae gravida felis imperdiet. Curabitur a libero id lacus posuere imperdiet. In hac habitasse platea dictumst. Vivamus gravida aliquam blandit. Proin et orci nec orci pharetra cursus id ac ante. Aliquam non elit a lectus faucibus viverra rhoncus vehicula tortor. Sed nec egestas purus. Sed eget sagittis dui.";
+                holder.Title.Text = "TORRE EIFFEL";
+                holder.Description.Text = @"La torre Eiffel3 (tour Eiffel, en francés), inicialmente nombrada tour de 300 mètres (torre de 300 metros), es una estructura de hierro pudelado diseñada por los ingenieros Maurice Koechlin y Émile Nouguier, dotada de su aspecto definitivo por el arquitecto Stephen Sauvestre y construida por el ingeniero francés Alexandre Gustave Eiffel y sus colaboradores para la Exposición Universal de 1889 en París.";
                 view.Tag = holder;
                 var inflater = context.GetSystemService(Context.LayoutInflaterService).JavaCast<LayoutInflater>();
                 //replace with your item and your holder items

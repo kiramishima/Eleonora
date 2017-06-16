@@ -19,18 +19,20 @@ namespace Eleonora.Droid.Services
         const string subscriptionKey = "25f95843fc00499e985d68d988e701fe";
         const string uriBase = @"https://westcentralus.api.cognitive.microsoft.com/vision/v1.0";
 
-        static async Task<string> FetchTokenAsync(string search)
+        public static async Task<string> FetchTokenAsync(string search)
         {
             var queryString = new Dictionary<string, string>();
             using (var client = new HttpClient())
             {
                 queryString.Add("q", search);
                 client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", subscriptionKey);
-                UriBuilder uriBuilder = new UriBuilder(uriBase);
-                uriBuilder.Path += "/issueToken";
 
-                var result = await client.PostAsync(uriBuilder.Uri.AbsoluteUri, null);
-                return await result.Content.ReadAsStringAsync();
+                var uri = "https://bingapis.azure-api.net/api/v5/search/?  "
+                    + "q=" + queryString["q"];
+
+                var response = await client.GetAsync(uri);
+
+                return await response.Content.ReadAsStringAsync();
             }
         }
     }

@@ -73,7 +73,7 @@ namespace Eleonora.Droid
 
         }
 
-        private void TxtSearch_KeyPress(object sender, View.KeyEventArgs e)
+        private async void TxtSearch_KeyPress(object sender, View.KeyEventArgs e)
         {
             try
             {
@@ -81,7 +81,8 @@ namespace Eleonora.Droid
                 if (e.Event.Action == KeyEventActions.Down && e.KeyCode == Keycode.Enter)
                 {
                     AddItem();
-                    Toast.MakeText(this, cajaBusqueda.Text, ToastLength.Short);
+                    // var res = await BingService.FetchTokenAsync(cajaBusqueda.Text);
+                    // Toast.MakeText(this, cajaBusqueda.Text, ToastLength.Short);
                     e.Handled = true;
                 }
             }
