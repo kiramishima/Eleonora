@@ -10,13 +10,12 @@ namespace Eleonora.PCL.Services
     class ServiceComputerVision
     {
         static string key = "";
-        public static async Task<Dictionary<string, float>> GetEmotions(Stream stream)
+        public static async Task<string> GetVision(Stream stream)
         {
             VisionServiceClient cliente = new VisionServiceClient(key);
             var vision = await cliente.CreateHandwritingRecognitionOperationAsync(stream);
-            if (vision == null)
-                return null;
-            return null;
+
+            return vision.ToString();
         }
     }
 }

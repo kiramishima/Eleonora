@@ -18,6 +18,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Android.Views;
 using System.Collections.Generic;
+using Eleonora.Core.Services;
 // using Gcm.Client;
 #if OFFLINE_SYNC_ENABLED
 using Microsoft.WindowsAzure.MobileServices.Sync;
@@ -173,7 +174,7 @@ namespace Eleonora.Droid
                     try
                     {
                         streamCopy.Seek(0, SeekOrigin.Begin);
-                        // var result = await ServiceComputerVision.GetPlaceInformation(streamCopy);
+                        var result = await ServiceComputerVision.GetPlaceInformation(streamCopy);
                         var item = new Search() { Email = "matrix549_8@hotmail.com", Text = "Coliseo"};
                         adapter.Add(item);
 
