@@ -18,7 +18,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Android.Views;
 using System.Collections.Generic;
-using Eleonora.Core.Services;
+using Eleonora.PCL.Services;
 // using Gcm.Client;
 #if OFFLINE_SYNC_ENABLED
 using Microsoft.WindowsAzure.MobileServices.Sync;
@@ -111,12 +111,6 @@ namespace Eleonora.Droid
             try
             {
                 adapter.Add(item);
-                ItemManager manager = new ItemManager();
-                TorneoItem registro = new TorneoItem();
-                registro.DeviceId = Android.Provider.Settings.Secure.GetString(ContentResolver, Android.Provider.Settings.Secure.AndroidId);
-                registro.Email = "matrix549_8@hotmail.com";
-                registro.Reto = @"Final_https://github.com/kiramishima/Eleonora";
-                await manager.SaveTaskAsync(registro);
             }
             catch (Exception e)
             {
@@ -174,10 +168,15 @@ namespace Eleonora.Droid
                     try
                     {
                         streamCopy.Seek(0, SeekOrigin.Begin);
-                        var result = await ServiceComputerVision.GetPlaceInformation(streamCopy);
-                        var item = new Search() { Email = "matrix549_8@hotmail.com", Text = "Coliseo"};
-                        adapter.Add(item);
-
+                        var serviceCV = new ServiceComputerVision();
+                        var models = await serviceCV.GetAvailableDomainModels();
+                        var selectedModel = models.Models[1];
+                        var result = await serviceCV.MakeAnalysisRequest(streamCopy, selectedModel);
+                        // var item = new Eleonora.Core.Models.Search() { Email = "matrix549_8@hotmail.com", Text = "Coliseo"};
+                        // adapter.Add(item);
+                        Snackbar
+                        .Make(fab, "Alfin Motherfuckers", Snackbar.LengthShort)
+                        .Show();
                     }
                     catch (Exception ex)
                     {

@@ -183,7 +183,6 @@
     <Compile Include="Services\BingService.cs" />
     <Compile Include="Services\ItemManager.cs" />
     <Compile Include="Services\ServiceHelper.cs" />
-    <Compile Include="Services\ServiceImage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -230,6 +229,10 @@
     <ProjectReference Include="..\Eleonora.Core\Eleonora.Core.csproj">
       <Project>{06750c77-320b-49c8-852b-b22daece4737}</Project>
       <Name>Eleonora.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eleonora.PCL\Eleonora.PCL.csproj">
+      <Project>{6241bb31-f74f-4f06-89d1-8125933c10e4}</Project>
+      <Name>Eleonora.PCL</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

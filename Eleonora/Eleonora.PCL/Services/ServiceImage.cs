@@ -20,7 +20,7 @@ namespace Eleonora.PCL.Services
             var file = useCam ? await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
             {
                 Directory = "Championship",
-                Name = "Reto6_Test.jpg"
+                Name = "photo.jpg"
             }) : await CrossMedia.Current.PickPhotoAsync();
 
             return file;
