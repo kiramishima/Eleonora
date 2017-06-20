@@ -19,6 +19,8 @@ using System.Threading.Tasks;
 using Android.Views;
 using System.Collections.Generic;
 using Eleonora.PCL.Services;
+using Newtonsoft.Json;
+using System.Linq;
 // using Gcm.Client;
 #if OFFLINE_SYNC_ENABLED
 using Microsoft.WindowsAzure.MobileServices.Sync;
@@ -123,15 +125,6 @@ namespace Eleonora.Droid
         }
         private async void Fab_Click(object sender, EventArgs e)
         {
-            Snackbar
-                .Make(fab, "Aqui llamamos a los servicios Cognitivos", Snackbar.LengthShort)
-                .SetAction("Clic aquí", (view) =>
-                {
-                    // MostrarAlertaImportante();
-                    Log.Info("Mensaje", "Soy un SnackBar");
-                })
-                .Show();
-
             MediaFile file = null;
             try
             {
@@ -149,8 +142,8 @@ namespace Eleonora.Droid
             {
                 return;
             }
-            // ImageView imgImage = FindViewById<ImageView>(Resource.Id.imageViewFoto);
-            // imgImage.SetImageURI(Android.Net.Uri.Parse(file.Path));
+            ImageView imgImage = FindViewById<ImageView>(Resource.Id.ImageCam);
+            imgImage.SetImageURI(Android.Net.Uri.Parse(file.Path));
             var stream = file.GetStream();
             streamCopy = new MemoryStream();
             stream.CopyTo(streamCopy);
@@ -172,11 +165,28 @@ namespace Eleonora.Droid
                         var models = await serviceCV.GetAvailableDomainModels();
                         var selectedModel = models.Models[1];
                         var result = await serviceCV.MakeAnalysisRequest(streamCopy, selectedModel);
-                        // var item = new Eleonora.Core.Models.Search() { Email = "matrix549_8@hotmail.com", Text = "Coliseo"};
-                        // adapter.Add(item);
-                        Snackbar
-                        .Make(fab, "Alfin Motherfuckers", Snackbar.LengthShort)
-                        .Show();
+                        if (result == null)
+                        {
+                            Log.Info("MakeAnalysisRequestResult", "null");
+                            return;
+                        }
+
+                        if (result.Metadata != null)
+                        {
+                            Log.Info("MakeAnalysisRequestResult", "Image Format : " + result.Metadata.Format);
+                            Log.Info("MakeAnalysisRequestResult", "Image Dimensions : " + result.Metadata.Width + " x " + result.Metadata.Height);
+                        }
+
+                        if (result.Result != null)
+                        {
+                            Log.Info("MakeAnalysisRequestResult", "Result : " + result.Result.ToString());
+                        }
+                        Landmarks landmarks = JsonConvert.DeserializeObject<Landmarks>(result.Result.ToString());
+                        Landmark landmark = landmarks.Items.FirstOrDefault();
+                        var item = new Search() { Email = "matrix549_8@hotmail.com", Text = landmark.Name};
+                        adapter.Add(item);
+                        cajaBusqueda.Text = landmark.Name;
+                        FindViewById<ImageView>(Resource.Id.ImageCam).Visibility = ViewStates.Visible;
                     }
                     catch (Exception ex)
                     {

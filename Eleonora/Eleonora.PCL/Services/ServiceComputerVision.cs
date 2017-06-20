@@ -13,32 +13,27 @@ namespace Eleonora.PCL.Services
     public class ServiceComputerVision
     {
         private string SubscriptionKey = "";
+        private string apiRoot = @"https://westeurope.api.cognitive.microsoft.com/vision/v1.0";
         /// <summary>
         /// Get a list of available domain models
         /// </summary>
         /// <returns></returns>
         public async Task<ModelResult> GetAvailableDomainModels()
         {
-            VisionServiceClient VisionServiceClient = new VisionServiceClient(SubscriptionKey, @"https://westeurope.api.cognitive.microsoft.com/vision/v1.0");
+            VisionServiceClient VisionServiceClient = new VisionServiceClient(SubscriptionKey, apiRoot);
             //
             // Analyze the url against the given domain
             //
             ModelResult modelResult = await VisionServiceClient.ListModelsAsync();
             return modelResult;
         }
-        public async Task<string> MakeAnalysisRequest(Stream stream, Model model)
+        public async Task<AnalysisInDomainResult> MakeAnalysisRequest(Stream stream, Model model)
         {
-            try
-            {
-                // OcrResults text;
-                VisionServiceClient client = new VisionServiceClient(SubscriptionKey, @"https://westeurope.api.cognitive.microsoft.com/vision/v1.0");
-                var result = await client.AnalyzeImageInDomainAsync(stream, model);
+            // OcrResults text;
+            VisionServiceClient client = new VisionServiceClient(SubscriptionKey, apiRoot);
+            AnalysisInDomainResult analysisResult = await client.AnalyzeImageInDomainAsync(stream, model);
 
-                return "Algo";
-            } catch (ClientException ex)
-            {
-                return ex.Message;
-            }
+            return analysisResult;
         }
         
     }
